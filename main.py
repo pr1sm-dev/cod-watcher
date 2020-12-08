@@ -3,6 +3,7 @@ import os
 import time
 import json
 import datetime
+import logging
 
 URL = 'https://673763436741.com/_next/static/chunks/pages/index-11b42ad60ed5bf02081d.js'
 
@@ -66,13 +67,13 @@ def run():
         data = get_page()
         if file_data != data:
             post_to_webhook(webhook_url, len(file_data), len(data))
-            print('Different!')
+            logging.info(f'Differing files: {len(file_data)} -> {len(data)}')
             file_data = data
 
             with open('data.js', 'w') as f:
                 f.write(file_data)
         else:
-            print('Same!')
+            logging.info(f'Files are the same!')
 
         time.sleep(3)
 
