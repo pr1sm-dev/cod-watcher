@@ -58,7 +58,7 @@ def run():
     with open('config.json', 'r') as f:
         webhook_url = json.load(f)['webhook_url']
 
-    file_data = None
+    file_data = ""
     if os.path.isfile('./data.js'):
         with open('data.js', 'r') as f:
             file_data = f.read()
