@@ -4,6 +4,7 @@ import time
 import json
 import datetime
 import logging
+import sys
 
 logging.basicConfig(
     filename='cod.log',
@@ -74,12 +75,14 @@ def run():
         if file_data != data:
             post_to_webhook(webhook_url, len(file_data), len(data))
             logging.debug(f'Differing files: {len(file_data)} -> {len(data)}')
+            print(f'Differing files: {len(file_data)} -> {len(data)}')
             file_data = data
 
             with open('data.js', 'w') as f:
                 f.write(file_data)
         else:
             logging.debug(f'Files are the same!')
+            print('Files are the same!')
 
         time.sleep(3)
 
